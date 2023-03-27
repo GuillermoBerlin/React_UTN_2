@@ -1,5 +1,5 @@
 import React from 'react'
-import Productos from './Productos'
+import Productos from '../Components/Productos'
 
 export default function Home() {
   return (
