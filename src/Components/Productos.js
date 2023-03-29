@@ -4,6 +4,7 @@ import Producto from './Producto'
 export default function Productos() {
 
   const [listadoProductos, setListadoProductos] = useState([])
+  const [loading, setLoading] = useState(true)
   
   
   useEffect(() => {
@@ -12,6 +13,7 @@ export default function Productos() {
         const response = await fetch('http://localhost:3000/products');
         const data = await response.json();
         setListadoProductos(data);
+        setLoading(false)
       } catch (error) {
         console.error(error);
       }
@@ -20,12 +22,17 @@ export default function Productos() {
     fetchData();
   }, []);
   
-
-  return (
+  if(loading){
+    return (
+      <p>Loading..</p>
+    )
+  }else{
+    return(
     <>
-    {listadoProductos.map(producto => (
-      <Producto name={producto.name} price={producto.price} description={producto.description}/>
-    ))}
-  </>
-  )
+      {listadoProductos.map(producto => (
+        <Producto name={producto.name} price={producto.price} description={producto.description}/>
+      ))}
+    </>
+  )}
+  
 }
