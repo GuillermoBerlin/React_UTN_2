@@ -18,7 +18,7 @@ export default function Productos() {
         console.error(error);
       }
     };
-  
+       
     fetchData();
   }, []);
   
