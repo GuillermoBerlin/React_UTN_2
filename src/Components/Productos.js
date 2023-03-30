@@ -30,7 +30,7 @@ export default function Productos() {
     return(
     <>
       {listadoProductos.map(producto => (
-        <Producto name={producto.name} price={producto.price} description={producto.description}/>
+        <Producto name={producto.name} price={producto.price} description={producto.description} id={producto._id}/>
       ))}
     </>
   )}
