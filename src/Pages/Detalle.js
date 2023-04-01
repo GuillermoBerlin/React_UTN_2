@@ -23,6 +23,9 @@ export default function  () {
     <div>
       <p>DETALLE</p>  
       <p>{producto.name}</p>
+      <p>{producto.description}</p>
+      <p>{producto.price}</p>
+      
     </div>
   )
 }
