@@ -4,6 +4,8 @@ import Menu from './Components/Menu';
 import Registro from './Pages/Registro';
 import Login from './Pages/Login';
 import Detalle from './Pages/Detalle';
+import NewProduct from './Pages/NewProduct';
+import ModifyProduct from './Pages/ModifyProduct';
 import {BrowserRouter as Router,Routes, Route} from "react-router-dom"
 import Container from 'react-bootstrap/Container'
 
@@ -16,7 +18,9 @@ function App() {
         <Route path="/" element={<Home/>}/>
         <Route path="/alta" element={<Registro/>}/>
         <Route path="/ingresar" element={<Login/>}/>
-        <Route path="/producto/:id" element={<Detalle/>}/>
+        <Route path="/products/:id" element={<Detalle/>}/>
+        <Route path="/products/newproduct" element={<NewProduct/>}/>
+        <Route path="/products/modifyproduct/:id" element={<ModifyProduct/>}/>
       </Routes>
       </Container>
     </Router>
