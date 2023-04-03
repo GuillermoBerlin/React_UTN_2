@@ -1,22 +1,26 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 import {Button, Form} from "react-bootstrap"
+import { useNavigate } from 'react-router-dom';
 
 export default function NewProduct() {
   const {register,handleSubmit, formState: { errors }} = useForm();
+  const navigate = useNavigate()
+  
 
   const onSubmit = async (data) =>{
     try {
       const response = await fetch('http://localhost:3000/products/', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          //'x-access-token': localStorage.getItem("token")
         },
         body: JSON.stringify(data)
       });
-
       const responseData = await response.json();
-      console.log(responseData); 
+      navigate(`/products/${responseData._id}`)
+      
     } catch (error) {
       console.error(error); 
     }

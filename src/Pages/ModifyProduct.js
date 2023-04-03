@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import {Button, Form} from "react-bootstrap"
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';;
 
 export default function NewProduct() {
+  const navigate = useNavigate()
   const {register,handleSubmit, setValue, formState: { errors }} = useForm();
   const { id } = useParams()
   
-
 
   useEffect(() => {
   const fetchData = async () => {
@@ -37,6 +37,10 @@ export default function NewProduct() {
         },
         body: JSON.stringify(data)
       });
+      if (response.ok) {
+        navigate("/")
+        //navigate(`/products/${id}`)
+      }
 
       const responseData = await response.json();
       console.log(responseData); 
@@ -45,6 +49,21 @@ export default function NewProduct() {
     }
   }
 
+  const handleDelete = async () => {
+    try {
+      const response = await fetch(`http://localhost:3000/products/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+        
+      });
+      navigate("/"); 
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  
   return (
     <div>
       
@@ -72,6 +91,7 @@ export default function NewProduct() {
         </Form.Select>
         {errors.category && <p>Please select a category</p>} 
         <Button type={'submit'}>Mandar</Button>
+        <Button type="submit" variant="danger" onClick={handleDelete}>Eliminar</Button>
       </Form>
     </div>
   )
