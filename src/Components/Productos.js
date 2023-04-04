@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import Producto from './Producto'
+import {Row} from 'react-bootstrap'
 
 export default function Productos() {
 
@@ -29,10 +30,16 @@ export default function Productos() {
   }else{
     return(
     <>
+    <Row>
       {listadoProductos.map(producto => (
-        <Producto name={producto.name} category={producto.category.name} price={producto.price} description={producto.description} id={producto._id}/>
+        <Producto 
+        name={producto.name} 
+        category={producto.category.name} 
+        price={producto.price} 
+        description={producto.description} 
+        id={producto._id}/>
       ))}
+    </Row>  
     </>
   )}
-  
 }

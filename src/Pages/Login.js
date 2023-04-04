@@ -20,7 +20,10 @@ export default function Login() {
   
       const responseData = await response.json();
       console.log(responseData);
-      localStorage.setItem('Token', responseData);
+      localStorage.setItem('token', responseData);
+      setTimeout(() => {
+        localStorage.removeItem('token');
+      }, 30 * 60 * 1000);
     } catch (error) { 
       console.error(error);
     }

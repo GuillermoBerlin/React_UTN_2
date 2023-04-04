@@ -28,6 +28,7 @@ export default function NewProduct() {
   fetchData();
 }, [id, setValue]);
 
+
   const onSubmit = async (data) =>{
     try {
       const response = await fetch('http://localhost:3000/products/'+id, {
@@ -48,6 +49,7 @@ export default function NewProduct() {
       console.error(error); 
     }
   }
+
 
   const handleDelete = async () => {
     try {

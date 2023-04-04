@@ -14,7 +14,7 @@ export default function NewProduct() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          //'x-access-token': localStorage.getItem("token")
+          'x-access-token': localStorage.getItem("token")
         },
         body: JSON.stringify(data)
       });
