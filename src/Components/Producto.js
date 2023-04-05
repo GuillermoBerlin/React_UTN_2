@@ -22,8 +22,8 @@ export default function producto(props) {
         <Card.Text>{props.category}</Card.Text>
         <Card.Text>{props.description}</Card.Text>
         <Card.Title>{props.price}€</Card.Title>
-        <Button as={Link} to={"./products/"+props.id}>See more</Button>
-        <Button as={Link} to={"./products/modifyproduct/"+props.id}>Edit</Button>
+        <Button variant="secondary" as={Link} to={"./products/"+props.id}>See more</Button>
+        <Button variant="secondary" as={Link} to={"./products/modifyproduct/"+props.id}>Edit</Button>
       </Card.Body>
     </Card>
     </Col>

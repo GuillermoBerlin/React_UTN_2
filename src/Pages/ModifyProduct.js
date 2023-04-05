@@ -92,8 +92,8 @@ export default function NewProduct() {
           <option value="642972cbd8baa8bf02a0e076">wardrobe</option>
         </Form.Select>
         {errors.category && <p>Please select a category</p>} 
-        <Button type={'submit'}>Mandar</Button>
-        <Button type="submit" variant="danger" onClick={handleDelete}>Eliminar</Button>
+        <Button type={'submit'} variant="secondary">Send</Button>
+        <Button type="submit" variant="danger" onClick={handleDelete}>Delete</Button>
       </Form>
     </div>
   )

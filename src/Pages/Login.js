@@ -1,11 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { useForm } from 'react-hook-form';
 import {Button, Form} from "react-bootstrap"
+import AuthContext from '../Context.js/AuthContext';
 
 
 export default function Login() {
+
   const {register,handleSubmit, formState: { errors }} = useForm();
-  
+
+  const context = useContext(AuthContext)
   
   const onSubmit = async (data) => {
     try {
@@ -21,8 +24,10 @@ export default function Login() {
       const responseData = await response.json();
       console.log(responseData);
       localStorage.setItem('token', responseData);
+      context.loginUser()
       setTimeout(() => {
-        localStorage.removeItem('token');
+        localStorage.removeItem('token')
+        context.logoutUser()
       }, 30 * 60 * 1000);
     } catch (error) { 
       console.error(error);

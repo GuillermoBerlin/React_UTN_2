@@ -8,9 +8,11 @@ import NewProduct from './Pages/NewProduct';
 import ModifyProduct from './Pages/ModifyProduct';
 import {BrowserRouter as Router,Routes, Route} from "react-router-dom"
 import Container from 'react-bootstrap/Container'
+import AuthProvider from './Context.js/AuthProvider';
 
 function App() {
   return (
+    <AuthProvider>
     <Router>
       <Menu/>
       <Container>
@@ -24,6 +26,7 @@ function App() {
       </Routes>
       </Container>
     </Router>
+    </AuthProvider>
   );
 }
 
