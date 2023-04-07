@@ -19,6 +19,8 @@ export default function NewProduct() {
       setValue('price', data.price);
       setValue('description', data.description);
       setValue('category', data.category);
+      setValue('thumbnail', data.thumbnail);
+      setValue('thumbnail2', data.thumbnail2);
 
     } catch (error) {
       console.error(error);
@@ -84,6 +86,16 @@ export default function NewProduct() {
           <Form.Label>Precio</Form.Label>
           <Form.Control type='text' {...register('price', { required: true })}  />
           {errors.price && <p>Please insert a price.</p>}
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Image 1</Form.Label>
+          <Form.Control type='text' {...register('thumbnail', { required: true })}  />
+          {errors.thumbnail && <p>Please insert an URL.</p>}
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Image 2</Form.Label>
+          <Form.Control type='text' {...register('thumbnail2', { required: true })}  />
+          {errors.thumbnail2 && <p>Please insert an URL.</p>}
         </Form.Group>
         <Form.Select aria-label="Default select example" {...register('category', { required: true })} defaultValue={null}>
           <option value="">-Select a category-</option>

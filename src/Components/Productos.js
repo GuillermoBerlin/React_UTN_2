@@ -37,7 +37,10 @@ export default function Productos() {
         category={producto.category.name} 
         price={producto.price} 
         description={producto.description} 
+        thumbnail={producto.thumbnail}
+        thumbnail2={producto.thumbnail2}
         id={producto._id}/>
+        
       ))}
     </Row>  
     </>

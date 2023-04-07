@@ -33,12 +33,15 @@ export default function Menu() {
               }
               
               {context.userLogged &&
+              <>
               <Nav.Link onClick={() => {
                 removeTokenFromLocalStorage();
                 context.logoutUser();
               }}>Logout</Nav.Link>  
+              <Nav.Link as={Link} to="/products/newproduct">New Product</Nav.Link>
+              </>
               }
-              <Nav.Link as={Link} to="/products/newproduct">New Product</Nav.Link>           
+                         
             </Nav>
           </Navbar.Collapse>
         </Container>

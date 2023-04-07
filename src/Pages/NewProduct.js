@@ -44,6 +44,17 @@ export default function NewProduct() {
           <Form.Control type='text' {...register('price', { required: true })}  />
           {errors.price && <p>Please insert a price.</p>}
         </Form.Group>
+        <Form.Group>
+          <Form.Label>Image 1</Form.Label>
+          <Form.Control type='text' {...register('thumbnail', { required: true })}  />
+          {errors.thumbnail && <p>Please insert an URL</p>}
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Image 2</Form.Label>
+          <Form.Control type='text' {...register('thumbnail2', { required: true })}  />
+          {errors.thumbnail2 && <p>Please insert an URL</p>}
+        </Form.Group>
+        
         <Form.Select aria-label="Default select example" {...register('category', { required: true })} defaultValue={null}>
           <option value="">-Select a category-</option>
           <option value="64296fbbd8baa8bf02a0e072">Chairs</option>
