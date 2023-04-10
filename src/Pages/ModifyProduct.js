@@ -97,6 +97,8 @@ export default function NewProduct() {
           <Form.Control type='text' {...register('thumbnail2', { required: true })}  />
           {errors.thumbnail2 && <p>Please insert an URL.</p>}
         </Form.Group>
+        <Form.Group>
+        <Form.Label>Category</Form.Label>
         <Form.Select aria-label="Default select example" {...register('category', { required: true })} defaultValue={null}>
           <option value="">-Select a category-</option>
           <option value="64296fbbd8baa8bf02a0e072">Chairs</option>
@@ -104,8 +106,10 @@ export default function NewProduct() {
           <option value="642972cbd8baa8bf02a0e076">wardrobe</option>
         </Form.Select>
         {errors.category && <p>Please select a category</p>} 
-        <Button type={'submit'} variant="secondary">Send</Button>
-        <Button type="submit" variant="danger" onClick={handleDelete}>Delete</Button>
+        </Form.Group>
+        
+        <Button className="mt-3" type={'submit'} variant="secondary">Send</Button>
+        <Button className="mt-3" type="submit" variant="danger" onClick={handleDelete}>Delete</Button>
       </Form>
     </div>
   )

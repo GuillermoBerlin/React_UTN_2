@@ -39,7 +39,8 @@ export default function Productos() {
         description={producto.description} 
         thumbnail={producto.thumbnail}
         thumbnail2={producto.thumbnail2}
-        id={producto._id}/>
+        key={producto._id}
+        />
         
       ))}
     </Row>  
