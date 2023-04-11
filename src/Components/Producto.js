@@ -39,7 +39,7 @@ const handleMouseLeave = e => {
         <Card.Text>{props.category}</Card.Text>
         <Card.Text>{props.description}</Card.Text>
         <Card.Title>{props.price}€</Card.Title>
-        <Button variant="secondary" as={Link} to={"./products/modifyproduct/"+props.id}>Edit</Button>
+        <Button variant="light" as={Link} to={"./products/modifyproduct/"+props.id}>Edit</Button>
       </Card.Body>
     </Card>
     </Col>

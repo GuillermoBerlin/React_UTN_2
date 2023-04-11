@@ -25,14 +25,14 @@ export default function Menu() {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link as={Link} to="/">Home</Nav.Link>
-              {!context.userLogged &&
+              
               <>
               <Nav.Link as={Link} to="/alta">Registro</Nav.Link>
               <Nav.Link as={Link} to="/ingresar">Login</Nav.Link>
               </>
-              }
               
-              {context.userLogged &&
+              
+              
               <>
               <Nav.Link onClick={() => {
                 removeTokenFromLocalStorage();
@@ -40,7 +40,7 @@ export default function Menu() {
               }}>Logout</Nav.Link>  
               <Nav.Link as={Link} to="/products/newproduct">New Product</Nav.Link>
               </>
-              }
+              
                          
             </Nav>
           </Navbar.Collapse>

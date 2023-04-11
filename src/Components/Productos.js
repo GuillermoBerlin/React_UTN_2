@@ -7,6 +7,7 @@ export default function Productos() {
   const [listadoProductos, setListadoProductos] = useState([])
   const [loading, setLoading] = useState(true)
   
+  //key={producto._id}
   
   useEffect(() => {
     const fetchData = async () => {
@@ -34,11 +35,12 @@ export default function Productos() {
       {listadoProductos.map(producto => (
         <Producto 
         name={producto.name} 
-        category={producto.category.name} 
+         
         price={producto.price} 
         description={producto.description} 
         thumbnail={producto.thumbnail}
         thumbnail2={producto.thumbnail2}
+        id={producto._id}
         key={producto._id}
         />
         

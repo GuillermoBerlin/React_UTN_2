@@ -18,6 +18,7 @@ export default function NewProduct() {
       setValue('name', data.name);
       setValue('price', data.price);
       setValue('description', data.description);
+      setValue('descriptionLong', data.descriptionLong);
       setValue('category', data.category);
       setValue('thumbnail', data.thumbnail);
       setValue('thumbnail2', data.thumbnail2);
@@ -81,6 +82,11 @@ export default function NewProduct() {
           <Form.Label>Descripcion</Form.Label>
           <Form.Control type='text' {...register('description', { required: true })}  />
           {errors.description && <p>Please insert a description</p>}
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Description Long</Form.Label>
+          <Form.Control type='text' {...register('descriptionLong', { required: true })}  />
+          {errors.descriptionLong && <p>Please insert a description</p>}
         </Form.Group>
         <Form.Group>
           <Form.Label>Precio</Form.Label>

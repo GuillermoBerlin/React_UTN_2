@@ -40,6 +40,11 @@ export default function NewProduct() {
           {errors.description && <p>Please insert a description</p>}
         </Form.Group>
         <Form.Group>
+          <Form.Label>Descripcion Long</Form.Label>
+          <Form.Control type='text' {...register('descriptionLong', { required: true })}  />
+          {errors.descriptionLong && <p>Please insert a description</p>}
+        </Form.Group>
+        <Form.Group>
           <Form.Label>Precio</Form.Label>
           <Form.Control type='text' {...register('price', { required: true })}  />
           {errors.price && <p>Please insert a price.</p>}
@@ -60,7 +65,7 @@ export default function NewProduct() {
             <option value="">-Seleccionar una categoría-</option>
             <option value="64296fbbd8baa8bf02a0e072">Chairs</option>
             <option value="64296fe9d8baa8bf02a0e074">Tables</option>
-            <option value="642972cbd8baa8bf02a0e076">Wardrobe</option>
+            <option value="642972cbd8baa8bf02a0e076">Desks</option>
           </Form.Select>
           {errors.category && <p>Por favor seleccione una categoría</p>} 
         </Form.Group>
