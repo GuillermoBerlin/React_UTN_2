@@ -42,6 +42,7 @@ export default function Productos() {
         thumbnail2={producto.thumbnail2}
         id={producto._id}
         key={producto._id}
+        isNew={producto.isNew}
         />
         
       ))}

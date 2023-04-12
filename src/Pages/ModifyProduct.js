@@ -7,6 +7,14 @@ export default function NewProduct() {
   const navigate = useNavigate()
   const {register,handleSubmit, setValue, formState: { errors }} = useForm();
   const { id } = useParams()
+
+
+  //Button isNew
+  const [isNew, setIsNew] = useState(false);
+
+  const handleCheckboxChange = () => {
+    setIsNew(!isNew);
+  };
   
 
   useEffect(() => {
@@ -22,6 +30,7 @@ export default function NewProduct() {
       setValue('category', data.category);
       setValue('thumbnail', data.thumbnail);
       setValue('thumbnail2', data.thumbnail2);
+      setValue('isNew', data.isNew);
 
     } catch (error) {
       console.error(error);
@@ -73,6 +82,14 @@ export default function NewProduct() {
     <div>
       
       <Form onSubmit={handleSubmit(onSubmit)}>
+        <Form.Check
+              type="checkbox"
+              id="exampleCheckbox"
+              label="Es Nuevo"
+              defaultChecked={isNew}
+              onChange={handleCheckboxChange}
+              {...register('isNew')}
+            />
         <Form.Group>
           <Form.Label>Nombre</Form.Label>
           <Form.Control type='text' {...register('name', { required: true })}  />
