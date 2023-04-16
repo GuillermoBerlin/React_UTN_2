@@ -39,14 +39,14 @@ export default function NewProduct() {
       <Form onSubmit={handleSubmit(onSubmit)}>
 
           <Form.Check
+            className="mt-4 mb-3"
             type="checkbox"
             id="exampleCheckbox"
-            label="Es Nuevo"
+            label="New Product"
             defaultChecked={isNew}
             onChange={handleCheckboxChange}
             {...register('isNew')}
           />
-
 
         <Form.Group>
           <Form.Label>Name</Form.Label>

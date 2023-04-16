@@ -34,8 +34,7 @@ export default function Productos() {
     <Row>
       {listadoProductos.map(producto => (
         <Producto 
-        name={producto.name} 
-         
+        name={producto.name}  
         price={producto.price} 
         description={producto.description} 
         thumbnail={producto.thumbnail}

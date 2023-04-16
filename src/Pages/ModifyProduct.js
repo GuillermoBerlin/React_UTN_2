@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import {Button, Form} from "react-bootstrap"
-import { useParams, useNavigate } from 'react-router-dom';;
+import { useParams, useNavigate } from 'react-router-dom';
 
 export default function NewProduct() {
   const navigate = useNavigate()
@@ -43,20 +43,19 @@ export default function NewProduct() {
 
   const onSubmit = async (data) =>{
     try {
-      const response = await fetch('http://localhost:3000/products/'+id, {
+      const putResponse = await fetch(`http://localhost:3000/products/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
       });
-      if (response.ok) {
-        navigate("/")
-        //navigate(`/products/${id}`)
+      if (putResponse.ok) {
+        navigate(`/products/${id}`)
       }
 
-      const responseData = await response.json();
-      console.log(responseData); 
+     // const responseData = await response.json();
+     // console.log(responseData); 
     } catch (error) {
       console.error(error); 
     }
@@ -72,7 +71,10 @@ export default function NewProduct() {
         }
         
       });
-      navigate("/"); 
+      if (response.ok) {
+       navigate("/");
+      }
+
     } catch (error) {
       console.error(error);
     }
@@ -83,9 +85,10 @@ export default function NewProduct() {
       
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Form.Check
+              className="mt-4 mb-2"
               type="checkbox"
               id="exampleCheckbox"
-              label="Es Nuevo"
+              label="New Product"
               defaultChecked={isNew}
               onChange={handleCheckboxChange}
               {...register('isNew')}
@@ -132,7 +135,8 @@ export default function NewProduct() {
         </Form.Group>
         
         <Button className="mt-3" type={'submit'} variant="secondary">Send</Button>
-        <Button className="mt-3" type="submit" variant="danger" onClick={handleDelete}>Delete</Button>
+        <Button className="mt-3" variant="danger" onClick={handleDelete}>Delete</Button>
+        
       </Form>
     </div>
   )

@@ -43,7 +43,6 @@ function ProductsByCategory() {
             {products.map(producto => (
                 <Producto 
                     name={producto.name} 
-                    
                     price={producto.price} 
                     description={producto.description} 
                     thumbnail={producto.thumbnail}

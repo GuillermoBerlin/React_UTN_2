@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {useParams} from "react-router-dom"
-import {Row, Col} from 'react-bootstrap'
+import {Row, Col, Badge} from 'react-bootstrap'
 
 export default function  () {
   const {id} = useParams()   
@@ -39,13 +39,15 @@ export default function  () {
 
                     
 
-                    <Col style={{marginTop: "25px"}}>           
+                    <Col style={{marginTop: "25px"}}>    
+                    <div style={{borderBottom: "1px solid lightgray", paddingBottom:"20px"}}>  
+                        {producto.isNew ? <Badge pill bg="danger" className="mt-2 mb-2">New</Badge> : null}     
                         <h2>{producto.name}</h2>
                         <p className="lead">{producto.description}</p>
-                        <h3>{producto.price}€</h3>
-                        <div style={{marginTop: "20px", borderBottom: "1px solid lightgray"}}>
-                        <p className="lead">{producto.descriptionLong}</p>   
-                        </div>                
+                        <p className="lead">{producto.descriptionLong}</p>  
+                        <h3>{producto.price}€</h3> 
+                        </div>  
+                                      
                     </Col>
                 </Row>
     </div>

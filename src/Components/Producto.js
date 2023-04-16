@@ -36,7 +36,7 @@ const handleMouseLeave = e => {
     <Link to={"/products/"+props.id}><Card.Img className="fluid text-center" variant="top" src={showedImage} style={styles.img} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}/></Link>
       <Card.Body>
         {props.isNew ? <Badge pill bg="danger" className="mt-2 mb-2">New</Badge> : null}
-        <Card.Title>{props.name}</Card.Title>
+        <Card.Title className="mt-2 mb-2">{props.name}</Card.Title>
         <Card.Text>{props.category}</Card.Text>
         <Card.Text>{props.description}</Card.Text>
         <Card.Title>{props.price}€</Card.Title>
