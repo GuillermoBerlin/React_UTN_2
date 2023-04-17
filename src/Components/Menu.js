@@ -1,53 +1,48 @@
 import React, { useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom'
-import { Navbar, Container, Nav } from 'react-bootstrap/'
+import { Link } from 'react-router-dom';
+import { Navbar, Container, Nav } from 'react-bootstrap/';
 import AuthContext from '../Context.js/AuthContext';
-
 
 export default function Menu() {
 
-  const context = useContext(AuthContext)
+  const context = useContext(AuthContext);
 
   useEffect(() => {
     context.initUser();
   }, []);
 
-  //const [token, setToken] = useState(localStorage.getItem('token'));
-
   const removeTokenFromLocalStorage = () => {
     localStorage.removeItem('token');
   };
 
-
+  const handleLogout = () => {
+    removeTokenFromLocalStorage();
+    context.logoutUser();
+  };
 
   return (
     <>
       <Navbar bg="light" expand="lg">
         <Container>
-          <Nav.Link as={Link} to="/"><Navbar.Brand href="#home">Onkel Node</Navbar.Brand></Nav.Link>
+          <Link to="/" className="nav-link">
+            <Navbar.Brand>Onkel Node</Navbar.Brand>
+          </Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link as={Link} to="/">Home</Nav.Link>
-              {!context.userLogged &&
-              <>
-              <Nav.Link as={Link} to="/alta">Registro</Nav.Link>
-              <Nav.Link as={Link} to="/ingresar">Login</Nav.Link>
-              </>
-              }
-              
-              
-              {context.userLogged &&
-              <>
-              <Nav.Link onClick={() => {
-                removeTokenFromLocalStorage();
-                context.logoutUser();
-              }}>Logout</Nav.Link>  
-              <Nav.Link as={Link} to="/products/newproduct">New Product</Nav.Link>
-              </>
-              }
-              
-                         
+              <Link to="/" className="nav-link">Home</Link>
+              {!context.userLogged && (
+                <>
+                  <Link to="/alta" className="nav-link">Registro</Link>
+                  <Link to="/ingresar" className="nav-link">Login</Link>
+                </>
+              )}
+              {context.userLogged && (
+                <>
+                  <Nav.Link onClick={handleLogout} className="nav-link">Logout</Nav.Link>
+                  <Link to="/products/newproduct" className="nav-link">New Product</Link>
+                </>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -55,3 +50,4 @@ export default function Menu() {
     </>
   )
 }
+

@@ -6,7 +6,7 @@ function AuthProvider(props){
 
     const [userLogged, setUserLogged] = useState(false)
     
-      //const [token, setToken] = useState(localStorage.getItem('token'));
+      
     const initUser = () =>{
         if (localStorage.getItem('token')!=null)
         setUserLogged(true)   
