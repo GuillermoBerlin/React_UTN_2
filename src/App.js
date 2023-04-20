@@ -6,8 +6,9 @@ import Login from './Pages/Login';
 import Detalle from './Pages/Detalle';
 import NewProduct from './Pages/NewProduct';
 import ModifyProduct from './Pages/ModifyProduct';
-import {BrowserRouter as Router,Routes, Route} from "react-router-dom"
-import Container from 'react-bootstrap/Container'
+import Cart from './Pages/Cart';
+import {BrowserRouter as Router,Routes, Route} from "react-router-dom";
+import Container from 'react-bootstrap/Container';
 import AuthProvider from './Context.js/AuthProvider';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path="/products/:id" element={<Detalle/>}/>
         <Route path="/products/newproduct" element={<NewProduct/>}/>
         <Route path="/products/modifyproduct/:id" element={<ModifyProduct/>}/>
+        <Route path="/cart/:id" element={<Cart/>}/>
       </Routes>
       </Container>
     </Router>

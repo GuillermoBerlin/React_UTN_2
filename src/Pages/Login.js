@@ -31,7 +31,9 @@ export default function Login() {
         console.log(responseData);
         console.log(res.status);
 
-        localStorage.setItem('token', responseData);
+        localStorage.setItem('token', responseData.token);
+        localStorage.setItem('name', responseData.name);
+        localStorage.setItem('userId', responseData.userId);
         context.loginUser();
         setSuccessfulLog(true);
         setMessage("Redirecting.."); 

@@ -1,22 +1,37 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Container, Nav } from 'react-bootstrap/';
 import AuthContext from '../Context.js/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function Menu() {
+  
+  const navigate = useNavigate();
 
   const context = useContext(AuthContext);
+
+  const [id, setId] = useState(null); 
+
+  useEffect(() => {
+    const userId = localStorage.getItem('userId'); 
+    setId(userId); 
+  }, [context.userLogged]);
 
   useEffect(() => {
     context.initUser();
   }, []);
 
-  const removeTokenFromLocalStorage = () => {
+  
+
+  const removeAllFromLocalStorage = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('name');
   };
 
   const handleLogout = () => {
-    removeTokenFromLocalStorage();
+    removeAllFromLocalStorage();
+    navigate("/");
     context.logoutUser();
   };
 
@@ -41,6 +56,7 @@ export default function Menu() {
                 <>
                   <Nav.Link onClick={handleLogout} className="nav-link">Logout</Nav.Link>
                   <Link to="/products/newproduct" className="nav-link">New Product</Link>
+                  <Link to={`/cart/${id}`} className="nav-link">Cart</Link>
                 </>
               )}
             </Nav>
