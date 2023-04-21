@@ -40,6 +40,9 @@ export default function Login() {
         setTimeout(() => {
           navigate("/");
         }, 2000);
+      }else {
+        // Código para el login fallido
+        setMessage(responseData.message); // Guardar el mensaje del servidor en setMessage
       } 
 
     } catch (error) {

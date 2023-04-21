@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Producto from "../Components/Producto";
+import ProductoEnCart from "../Components/ProductoEnCart";
 import {useParams} from "react-router-dom"
 
 const Cart = () => {
@@ -34,7 +34,7 @@ const Cart = () => {
       <div>
         {/* Renderizar los productos */}
         {listadoProductos.map(producto => (
-          <Producto
+          <ProductoEnCart
             name={producto.name}
             price={producto.price}
             description={producto.description}
@@ -42,7 +42,6 @@ const Cart = () => {
             thumbnail2={producto.thumbnail2}
             id={producto._id}
             key={producto._id}
-            isNew={producto.isNew}
           />
         ))}
       </div>

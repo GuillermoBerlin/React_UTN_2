@@ -48,7 +48,7 @@ export default function Registro() {
     <div>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Form.Group>
-          <Form.Label>Nombre</Form.Label>
+          <Form.Label>Name</Form.Label>
           <Form.Control type='text' {...register('name', { required: true })} />
           {errors.name && <p>El nombre es requerido.</p>}
         </Form.Group>
