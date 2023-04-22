@@ -7,6 +7,30 @@ const Cart = () => {
   const [loading, setLoading] = useState(true);
   const {id} = useParams()
   
+
+  const deleteFromCart = async (userId, productId) => {
+    try {
+      
+      const response = await fetch("http://localhost:3000/cart/products", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ userId, productId })
+      });
+  
+      if (response.ok) {
+        
+        console.log("Producto eliminado del carrito exitosamente");
+      } else {
+        
+        console.error("Error al eliminar el producto del carrito");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -25,10 +49,11 @@ const Cart = () => {
     };
 
     fetchData();
-  }, []);
+  }, [deleteFromCart]);
+
 
   if (loading) {
-    return <p>Loading..</p>;
+    return <p>Cart is empty..</p>;
   } else {
     return (
       <div>
@@ -42,6 +67,7 @@ const Cart = () => {
             thumbnail2={producto.thumbnail2}
             id={producto._id}
             key={producto._id}
+            deleteFromCart={deleteFromCart}
           />
         ))}
       </div>

@@ -15,7 +15,7 @@ export default function Product() {
     }
   }
 
-  //la id del producto tendria que ser productId desde el principio y no andar cambiandole el nombre para hacer el fetch
+  
 
   const [productAdded, setProductAdded] = useState(false)
 

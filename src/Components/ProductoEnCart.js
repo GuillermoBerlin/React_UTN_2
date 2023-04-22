@@ -17,10 +17,13 @@ export default function ProductoEnCart(props) {
 
   const [userId, setUserId] = useState("")
 
+  const [productId, setProductId] = useState() 
+
   useEffect(() => {
     
     const getId = localStorage.getItem("userId");
     setUserId(getId);
+    setProductId(props.id)
   }, []);
   
 
@@ -36,30 +39,7 @@ const handleMouseLeave = e => {
   setShowedImage(props.thumbnail);
 }
 
-const deleteFromCart = async () => {
-  try {
-    
-    const productId = props.id; 
 
-    const response = await fetch("http://localhost:3000/cart/products", {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ userId, productId })
-    });
-
-    if (response.ok) {
-      
-      console.log("Producto eliminado del carrito exitosamente");
-    } else {
-      
-      console.error("Error al eliminar el producto del carrito");
-    }
-  } catch (error) {
-    console.error(error);
-  }
-};
 
   return (
     <>
@@ -72,7 +52,8 @@ const deleteFromCart = async () => {
         <Card.Text>{props.category}</Card.Text>
         <Card.Text>{props.description}</Card.Text>
         <Card.Title>{props.price}€</Card.Title>
-        <Button variant="danger" onClick={deleteFromCart} className="mt-4">Delete</Button>
+        
+        <Button variant="danger" onClick={() => props.deleteFromCart(userId, productId)} className="mt-4">Delete</Button>
       </Card.Body>
     </Card>
     </Col>
