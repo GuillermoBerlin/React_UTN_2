@@ -36,10 +36,9 @@ export default function Login() {
         localStorage.setItem('userId', responseData.userId);
         context.loginUser();
         setSuccessfulLog(true);
-        setMessage("Redirecting.."); 
         setTimeout(() => {
           navigate("/");
-        }, 2000);
+        }, 1000);
       }else {
         // Código para el login fallido
         setMessage(responseData.message); // Guardar el mensaje del servidor en setMessage
@@ -65,7 +64,7 @@ export default function Login() {
         </Form.Group>
         <Button type={'submit'} className={`mt-3 ${successfulLog ? 'btn-success' : ''}`}>{successfulLog ? 'Success' : 'Submit'}</Button>
       </Form>
-      {message && <p>{message}</p>} 
+      {message && <p style={{color: 'red', marginTop: '8px'}}>{message}</p>} 
     </div>
   )
 }

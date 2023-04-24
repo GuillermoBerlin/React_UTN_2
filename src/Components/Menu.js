@@ -4,12 +4,11 @@ import { Navbar, Container, Nav } from 'react-bootstrap/';
 import AuthContext from '../Context.js/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
+
 export default function Menu() {
   
   const navigate = useNavigate();
-
   const context = useContext(AuthContext);
-
   const [id, setId] = useState(null); 
 
   useEffect(() => {

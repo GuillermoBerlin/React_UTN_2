@@ -62,7 +62,7 @@ export default function Registro() {
           <Form.Control type='password' {...register('password', { required: true })} />
           {errors.password && <p>La contraseña es requerida.</p>}
         </Form.Group>
-        <Button type={'submit'} className={`mt-3 ${success ? 'btn-success' : ''}`}>{success ? 'Success' : 'Submit'}</Button>
+        <Button type={'submit'} className={`mt-3 ${success ? 'btn-success' : ''}`}>{success ? 'User created' : 'Submit'}</Button>
       </Form>
       {message && <p>{message}</p>}
     </div>

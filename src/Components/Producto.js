@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
-import {Card, Button, Col, Badge} from 'react-bootstrap'
+import {Card, Col, Badge} from 'react-bootstrap'
 import React, {useState, useEffect} from "react";
+
 
 const styles = {
   img: {
@@ -14,7 +15,6 @@ const styles = {
 export default function Producto(props) {
 
   const [showedImage, setShowedImage] = useState(props.thumbnail)
-
   
 
 useEffect(() => {
@@ -40,7 +40,6 @@ const handleMouseLeave = e => {
         <Card.Text>{props.category}</Card.Text>
         <Card.Text>{props.description}</Card.Text>
         <Card.Title>{props.price}€</Card.Title>
-        <Button variant="light" as={Link} to={"./products/modifyproduct/"+props.id}>Edit</Button>
       </Card.Body>
     </Card>
     </Col>

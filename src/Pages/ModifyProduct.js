@@ -52,10 +52,7 @@ export default function NewProduct() {
       });
       if (putResponse.ok) {
         navigate(`/products/${id}`)
-      }
-
-     // const responseData = await response.json();
-     // console.log(responseData); 
+      } 
     } catch (error) {
       console.error(error); 
     }
@@ -68,13 +65,11 @@ export default function NewProduct() {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json'
-        }
-        
+        } 
       });
       if (response.ok) {
        navigate("/");
       }
-
     } catch (error) {
       console.error(error);
     }
@@ -134,8 +129,8 @@ export default function NewProduct() {
         {errors.category && <p>Please select a category</p>} 
         </Form.Group>
         
-        <Button className="mt-3" type={'submit'} variant="secondary">Send</Button>
-        <Button className="mt-3" variant="danger" onClick={handleDelete}>Delete</Button>
+        <Button className="mt-3" type={'submit'} >Save</Button>
+        <Button className="mt-3" variant="danger" style={{marginLeft: '1rem'}} onClick={handleDelete}>Delete</Button>
         
       </Form>
     </div>

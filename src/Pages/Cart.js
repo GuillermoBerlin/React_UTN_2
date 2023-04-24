@@ -2,15 +2,15 @@ import React, { useState, useEffect } from "react";
 import ProductoEnCart from "../Components/ProductoEnCart";
 import {useParams} from "react-router-dom"
 
+
 const Cart = () => {
   const [listadoProductos, setListadoProductos] = useState([]);
-  const [loading, setLoading] = useState(true);
   const {id} = useParams()
+  const [isCartEmpty, setIsCartEmpty] = useState(true)
   
 
   const deleteFromCart = async (userId, productId) => {
     try {
-      
       const response = await fetch("http://localhost:3000/cart/products", {
         method: "DELETE",
         headers: {
@@ -18,12 +18,10 @@ const Cart = () => {
         },
         body: JSON.stringify({ userId, productId })
       });
-  
+
       if (response.ok) {
-        
         console.log("Producto eliminado del carrito exitosamente");
       } else {
-        
         console.error("Error al eliminar el producto del carrito");
       }
     } catch (error) {
@@ -36,12 +34,13 @@ const Cart = () => {
       try {
         const response = await fetch(`http://localhost:3000/cart/${id}`);
         const data = await response.json();
-        // Verificar que la respuesta contiene un arreglo de productos
+        
         if (Array.isArray(data.products)) {
           setListadoProductos(data.products);
-          setLoading(false);
+          setIsCartEmpty(data.products.length === 0); 
         } else {
           console.error("Cart is empty", data);
+          setIsCartEmpty(true);
         }
       } catch (error) {
         console.error("ERRORCITO ERROR", error);
@@ -51,13 +50,9 @@ const Cart = () => {
     fetchData();
   }, [deleteFromCart]);
 
-
-  if (loading) {
-    return <p>Cart is empty..</p>;
-  } else {
-    return (
-      <div>
-        {/* Renderizar los productos */}
+  return (
+    <>
+        {isCartEmpty && <h6 style={{marginTop: "30px"}}>Your Cart is empty.</h6>}
         {listadoProductos.map(producto => (
           <ProductoEnCart
             name={producto.name}
@@ -70,9 +65,9 @@ const Cart = () => {
             deleteFromCart={deleteFromCart}
           />
         ))}
-      </div>
-    );
-  }
+    </>
+  );
 };
 
 export default Cart;
+

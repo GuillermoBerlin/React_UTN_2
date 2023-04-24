@@ -1,6 +1,7 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import {useParams, Link} from "react-router-dom"
 import {Row, Col, Badge, Button} from 'react-bootstrap'
+import AuthContext from '../Context.js/AuthContext'
 
 export default function Product() {
   const {id} = useParams()
@@ -20,6 +21,8 @@ export default function Product() {
   const [productAdded, setProductAdded] = useState(false)
 
   const [userId, setUserId] = useState("")
+
+  const context = useContext(AuthContext);
 
   useEffect(() => {
     
@@ -88,6 +91,9 @@ export default function Product() {
           {productAdded &&
             <Button variant="success" as={Link} to={"/cart/" + userId} className="mt-4">Go to Cart</Button>
           }
+          {context.userLogged && (
+          <Button variant="light" className="mt-4" style={{marginLeft: '1rem'}} as={Link} to={"/products/modifyproduct/"+id}>Edit</Button>
+          )}  
         </Col>
       </Row>
     </div>

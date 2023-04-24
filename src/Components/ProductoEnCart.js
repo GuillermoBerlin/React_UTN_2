@@ -20,25 +20,23 @@ export default function ProductoEnCart(props) {
   const [productId, setProductId] = useState() 
 
   useEffect(() => {
-    
     const getId = localStorage.getItem("userId");
     setUserId(getId);
     setProductId(props.id)
   }, []);
   
 
-useEffect(() => {
-  setShowedImage(props.thumbnail);
-}, [props.thumbnail])
+  useEffect(() => {
+    setShowedImage(props.thumbnail);
+  }, [props.thumbnail])
 
-const handleMouseEnter = e => {
-  setShowedImage(props.thumbnail2);
-}
+  const handleMouseEnter = e => {
+    setShowedImage(props.thumbnail2);
+  }
 
-const handleMouseLeave = e => {
-  setShowedImage(props.thumbnail);
-}
-
+  const handleMouseLeave = e => {
+    setShowedImage(props.thumbnail);
+  }
 
 
   return (
@@ -52,7 +50,6 @@ const handleMouseLeave = e => {
         <Card.Text>{props.category}</Card.Text>
         <Card.Text>{props.description}</Card.Text>
         <Card.Title>{props.price}€</Card.Title>
-        
         <Button variant="danger" onClick={() => props.deleteFromCart(userId, productId)} className="mt-4">Delete</Button>
       </Card.Body>
     </Card>
