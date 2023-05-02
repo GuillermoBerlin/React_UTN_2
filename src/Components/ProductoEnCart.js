@@ -15,6 +15,7 @@ export default function ProductoEnCart(props) {
   const [userId, setUserId] = useState("");
   const [productId, setProductId] = useState("");
   const [quantity, setQuantity] = useState(props.quantity); // State para la cantidad
+  
 
   useEffect(() => {
     const getId = localStorage.getItem("userId");
@@ -81,6 +82,7 @@ export default function ProductoEnCart(props) {
                 variant="danger"
                 onClick={() => props.deleteFromCart(userId, productId)}
                 className="me-2"
+                style={{ marginRight: '6rem' }}
               >
                 Delete
               </Button>
