@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import ProductoEnCart from "../Components/ProductoEnCart";
 import { useParams } from "react-router-dom";
 import {Row} from 'react-bootstrap'
+import { BASE_URL } from "../constants/api";
 
 const Cart = () => {
   const [listadoProductos, setListadoProductos] = useState([]);
@@ -11,9 +12,9 @@ const Cart = () => {
 
   
 
-  const deleteFromCart = useCallback(async (userId, productId) => {
+  const deleteFromCart = async (userId, productId) => {
     try {
-      const response = await fetch("http://localhost:3000/cart/products", {
+      const response = await fetch(`${BASE_URL}/cart/products`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -33,7 +34,7 @@ const Cart = () => {
     } catch (error) {
       console.error(error);
     }
-  }, []);
+  };
 
   const updateProductQuantity = async (userId, productId, quantity) => {
     try {
@@ -47,6 +48,14 @@ const Cart = () => {
 
       if (response.ok) {
         console.log("Cantidad de producto actualizada exitosamente");
+        setListadoProductos(
+            listadoProductos.map((producto) => {
+            if(productId === producto.product._id){
+              return{...producto, quantity}
+            }
+            return producto
+          })
+        );
         
       } else {
         console.error("Error al actualizar la cantidad de producto");
@@ -64,7 +73,7 @@ const Cart = () => {
 
         if (Array.isArray(data.products)) {
           setListadoProductos(data.products);
-          setIsCartEmpty(data.products.length === 0);
+          
         } else {
           console.error("Cart is empty", data);
           setIsCartEmpty(true);
@@ -87,7 +96,8 @@ const Cart = () => {
 
   useEffect(() => {
     calculateTotalPrice();
-  }, [listadoProductos, updateProductQuantity]);
+    setIsCartEmpty(listadoProductos.length === 0);
+  }, [listadoProductos]);
 
   return (
     <>
