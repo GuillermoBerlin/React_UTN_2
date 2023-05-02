@@ -47,7 +47,14 @@ const Cart = () => {
 
       if (response.ok) {
         console.log("Cantidad de producto actualizada exitosamente");
-        
+        setListadoProductos((prevListadoProductos) =>
+          prevListadoProductos.map((producto) => {
+            if(producto.product._id === productId){
+              return {...producto, quantity}
+            }
+            return producto
+          })
+        );
       } else {
         console.error("Error al actualizar la cantidad de producto");
       }
@@ -63,8 +70,7 @@ const Cart = () => {
         const data = await response.json();
 
         if (Array.isArray(data.products)) {
-          setListadoProductos(data.products);
-          setIsCartEmpty(data.products.length === 0);
+          setListadoProductos(data.products); // se podria colocar un flag en true cuando ya hizo el fetch, para quitar un <p>loading</p> del render por ejemplo
         } else {
           console.error("Cart is empty", data);
           setIsCartEmpty(true);
@@ -77,17 +83,17 @@ const Cart = () => {
     fetchData();
   }, []);
 
-  const calculateTotalPrice = () => {
-    let total = 0;
-    listadoProductos.forEach(producto => {
-      total += producto.product.price * producto.quantity;
-    });
-    setTotalPrice(total);
-  }
-
   useEffect(() => {
+    const calculateTotalPrice = () => {
+      let total = 0;
+      listadoProductos.forEach(producto => {
+        total += producto.product.price * producto.quantity;
+      });
+      setTotalPrice(total);
+    }
     calculateTotalPrice();
-  }, [listadoProductos, updateProductQuantity]);
+    setIsCartEmpty(listadoProductos.length === 0);
+  }, [listadoProductos]);
 
   return (
     <>
