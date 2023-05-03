@@ -72,8 +72,10 @@ export default function Product() {
 
   return (
     <div>
-      <Row style={{marginTop: "25px"}}>
-        <Col lg={8} className='d-none d-sm-block'>
+
+      <Row style={{marginTop: "25px"}} 
+      className='d-flex flex-lg-row flex-column-reverse'>
+        <Col lg={8} className='d-sm-block'>
           <img style={styles.mainImage} src={producto.thumbnail}/>
           <img style={styles.mainImage} src={producto.thumbnail2}/>
         </Col>
