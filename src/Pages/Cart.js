@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect} from "react";
 import ProductoEnCart from "../Components/ProductoEnCart";
 import { useParams } from "react-router-dom";
 import {Row} from 'react-bootstrap'
@@ -102,8 +102,9 @@ const Cart = () => {
   return (
     <>
       <Row>
-      <p>Total: ${totalPrice}</p>
+      
       {isCartEmpty && <h6 style={{ marginTop: "30px" }}>Your Cart is empty.</h6>}
+      {!isCartEmpty && <h5 style={{ paddingBottom:"20px", marginTop: "30px",marginBottom: "30px", borderBottom: "1px solid lightgray"}}>Total: € {totalPrice}</h5>}
       {listadoProductos.map((producto) => (
         <ProductoEnCart
           name={producto.product.name}

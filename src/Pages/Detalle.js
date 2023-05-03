@@ -85,7 +85,7 @@ export default function Product() {
             <p className="lead">{producto.descriptionLong}</p>
             <h3>{producto.price}€</h3>
           </div>
-          {!productAdded &&
+          {!productAdded && context.userLogged &&
           <Button variant="warning" onClick={addToCart} className="mt-4">Add to bag</Button>
           }
           {productAdded &&

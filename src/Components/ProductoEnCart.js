@@ -15,6 +15,8 @@ export default function ProductoEnCart(props) {
   const [userId, setUserId] = useState("");
   const [productId, setProductId] = useState("");
   const [quantity, setQuantity] = useState(props.quantity); // State para la cantidad
+
+  const priceInCart = props.price * quantity
   
 
   useEffect(() => {
@@ -52,7 +54,7 @@ export default function ProductoEnCart(props) {
 
   return (
     <>
-      <Col>
+      
         <Card
           className="border-0 border-bottom m-4"
           style={{ width: "18rem" }}
@@ -68,15 +70,10 @@ export default function ProductoEnCart(props) {
             />
           </Link>
           <Card.Body>
-            {props.isNew ? (
-              <Badge pill bg="danger" className="mt-2 mb-2">
-                New
-              </Badge>
-            ) : null}
             <Card.Title className="mt-2 mb-2">{props.name}</Card.Title>
             <Card.Text>{props.category}</Card.Text>
             <Card.Text>{props.description}</Card.Text>
-            <Card.Title>{props.price}€</Card.Title>
+            <Card.Title>{priceInCart}€</Card.Title>
             <div className="d-flex align-items-center">
               <Button
                 variant="danger"
@@ -106,7 +103,7 @@ export default function ProductoEnCart(props) {
             </div>
           </Card.Body>
         </Card>
-      </Col>
+      
     </>
   );
 }
