@@ -1,8 +1,9 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import { Button, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
-import { Button, Form } from "react-bootstrap";
-import AuthContext from '../Context.js/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import AuthContext from '../Context.js/AuthContext';
+import { BASE_URL } from '../constants/api';
 
 export default function Login() {
 
@@ -18,7 +19,7 @@ export default function Login() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await fetch('http://localhost:3000/users/login', {
+      const response = await fetch(`${BASE_URL}/users/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -27,9 +28,9 @@ export default function Login() {
       });
       const responseData = await response.json();
       if (response.status === 201) {
-        const res = response;
-        console.log(responseData);
-        console.log(res.status);
+        //const res = response;
+        //console.log(responseData);
+        //console.log(res.status);
 
         localStorage.setItem('token', responseData.token);
         localStorage.setItem('name', responseData.name);
@@ -40,8 +41,7 @@ export default function Login() {
           navigate("/");
         }, 1000);
       }else {
-        // Código para el login fallido
-        setMessage(responseData.message); // Guardar el mensaje del servidor en setMessage
+        setMessage(responseData.message); 
       } 
 
     } catch (error) {

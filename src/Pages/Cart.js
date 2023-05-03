@@ -10,8 +10,6 @@ const Cart = () => {
   const [isCartEmpty, setIsCartEmpty] = useState(true);
   const [totalPrice, setTotalPrice] = useState(0);
 
-  
-
   const deleteFromCart = async (userId, productId) => {
     try {
       const response = await fetch(`${BASE_URL}/cart/products`, {
@@ -23,7 +21,8 @@ const Cart = () => {
       });
 
       if (response.ok) {
-        console.log("Producto eliminado del carrito exitosamente");
+        //console.log("Producto eliminado del carrito exitosamente");
+
         // Actualizar el estado local de listadoProductos después de eliminar un producto
         setListadoProductos((prevListadoProductos) =>
           prevListadoProductos.filter((producto) => producto.product._id !== productId)
@@ -38,7 +37,7 @@ const Cart = () => {
 
   const updateProductQuantity = async (userId, productId, quantity) => {
     try {
-      const response = await fetch("http://localhost:3000/cart/products", {
+      const response = await fetch(`${BASE_URL}/cart/products`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -47,7 +46,7 @@ const Cart = () => {
       });
 
       if (response.ok) {
-        console.log("Cantidad de producto actualizada exitosamente");
+        //console.log("Cantidad de producto actualizada exitosamente");
         setListadoProductos(
             listadoProductos.map((producto) => {
             if(productId === producto.product._id){
@@ -68,7 +67,7 @@ const Cart = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/cart/${id}`);
+        const response = await fetch(`${BASE_URL}/cart/${id}`);
         const data = await response.json();
 
         if (Array.isArray(data.products)) {

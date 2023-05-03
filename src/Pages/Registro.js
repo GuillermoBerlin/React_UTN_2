@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { BASE_URL } from '../constants/api';
 
 export default function Registro() {
   const {
@@ -11,14 +12,12 @@ export default function Registro() {
   } = useForm();
 
   const [message, setMessage] = useState('');
-
   const [success, setSuccess] = useState(false);
-
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     try {
-      const response = await fetch('http://localhost:3000/users/', {
+      const response = await fetch(`${BASE_URL}/users`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -28,9 +27,9 @@ export default function Registro() {
 
       const responseData = await response.json();
       setMessage(responseData.message);
-      console.log(responseData);
+      
       if (response.status === 201) {
-        console.log('A VER LPM');
+        
         setSuccess(true)
         setTimeout(() => {
           navigate("/ingresar");

@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 import {Button, Form} from "react-bootstrap"
 import { useNavigate } from 'react-router-dom';
+import { BASE_URL } from '../constants/api';
 
 export default function NewProduct() {
+
   const {register,handleSubmit, formState: { errors }} = useForm();
   const navigate = useNavigate()
   
@@ -18,7 +20,7 @@ export default function NewProduct() {
   //Fetch
   const onSubmit = async (data) =>{
     try {
-      const response = await fetch('http://localhost:3000/products/', {
+      const response = await fetch(`${BASE_URL}/products`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import {Button, Form} from "react-bootstrap"
 import { useParams, useNavigate } from 'react-router-dom';
+import { BASE_URL } from '../constants/api';
 
 export default function NewProduct() {
   const navigate = useNavigate()
@@ -20,7 +21,7 @@ export default function NewProduct() {
   useEffect(() => {
   const fetchData = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/products/${id}`);
+      const response = await fetch(`${BASE_URL}/products/${id}`);
       const data = await response.json();
       
       setValue('name', data.name);
@@ -43,7 +44,7 @@ export default function NewProduct() {
 
   const onSubmit = async (data) =>{
     try {
-      const putResponse = await fetch(`http://localhost:3000/products/${id}`, {
+      const putResponse = await fetch(`${BASE_URL}/products/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
@@ -61,7 +62,7 @@ export default function NewProduct() {
 
   const handleDelete = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/products/${id}`, {
+      const response = await fetch(`${BASE_URL}/products/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json'

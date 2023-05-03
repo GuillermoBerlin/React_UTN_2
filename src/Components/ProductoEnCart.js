@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Card, Button, Col, Badge } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 
 const styles = {
@@ -14,7 +14,7 @@ export default function ProductoEnCart(props) {
   const [showedImage, setShowedImage] = useState(props.thumbnail);
   const [userId, setUserId] = useState("");
   const [productId, setProductId] = useState("");
-  const [quantity, setQuantity] = useState(props.quantity); // State para la cantidad
+  const [quantity, setQuantity] = useState(props.quantity); 
 
   const priceInCart = props.price * quantity
   
@@ -41,20 +41,19 @@ export default function ProductoEnCart(props) {
   const handleIncrement = () => {
     const newQuantity = quantity + 1;
     setQuantity(newQuantity);
-    props.updateProductQuantity(userId, productId, newQuantity); // Llamada a la función de actualizar cantidad en el carrito
+    props.updateProductQuantity(userId, productId, newQuantity); 
   };
 
   const handleDecrement = () => {
     if (quantity > 1) {
       const newQuantity = quantity - 1;
       setQuantity(newQuantity);
-      props.updateProductQuantity(userId, productId, newQuantity); // Llamada a la función de actualizar cantidad en el carrito
+      props.updateProductQuantity(userId, productId, newQuantity); 
     }
   };
 
   return (
     <>
-      
         <Card
           className="border-0 border-bottom m-4"
           style={{ width: "18rem" }}

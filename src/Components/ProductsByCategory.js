@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import Producto from "./Producto";
-
 import { Row, Button, ButtonGroup } from 'react-bootstrap';
+import { BASE_URL } from "../constants/api";
 
 function ProductsByCategory() {
+
   const [category, setCategory] = useState('64296fbbd8baa8bf02a0e072');
   const [products, setProducts] = useState([]);
   
-
   useEffect(() => {
     const getProductsByCategory = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/products/categories/${category}`);
+        const response = await fetch(`${BASE_URL}/products/categories/${category}`);
         if (response.ok) {
           const products = await response.json();
           setProducts(products);
@@ -20,8 +20,7 @@ function ProductsByCategory() {
           throw new Error('Error al obtener productos por categoría');
         }
       } catch (error) {
-        console.log(error);
-        
+        console.log(error);   
       }
     };
     getProductsByCategory();

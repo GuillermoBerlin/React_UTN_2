@@ -2,6 +2,7 @@ import React, {useState, useEffect, useContext} from 'react'
 import {useParams, Link} from "react-router-dom"
 import {Row, Col, Badge, Button} from 'react-bootstrap'
 import AuthContext from '../Context.js/AuthContext'
+import { BASE_URL } from "../constants/api";
 
 export default function Product() {
   const {id} = useParams()
@@ -15,8 +16,6 @@ export default function Product() {
       margin: "10px"
     }
   }
-
-  
 
   const [productAdded, setProductAdded] = useState(false)
 
@@ -33,7 +32,7 @@ export default function Product() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3000/products/'+id);
+        const response = await fetch(`${BASE_URL}/products/${id}`);
         const data = await response.json();
         setProducto(data);
       } catch (error) {
@@ -45,24 +44,20 @@ export default function Product() {
   }, [id]);
 
   const addToCart = async () => {
-    try {
-      
+    try { 
       const productId = id; 
-
-      const response = await fetch("http://localhost:3000/cart/products", {
+      const response = await fetch(`${BASE_URL}/cart/products`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({ userId, productId })
       });
-
+      
       if (response.ok) {
-        setProductAdded(true)
-        
-        console.log("Producto agregado al carrito exitosamente");
-      } else {
-        
+        setProductAdded(true)       
+        //console.log("Producto agregado al carrito exitosamente");
+      } else {      
         console.error("Error al agregar el producto al carrito");
       }
     } catch (error) {
@@ -72,7 +67,6 @@ export default function Product() {
 
   return (
     <div>
-
       <Row style={{marginTop: "25px"}} 
       className='d-flex flex-lg-row flex-column-reverse'>
         <Col lg={8} className='d-sm-block'>
