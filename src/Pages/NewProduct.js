@@ -96,7 +96,7 @@ export default function NewProduct() {
           </Form.Select>
           {errors.category && <p>Please select a category</p>} 
         </Form.Group>
-        {errors.category && <p>Please select a category</p>} 
+        
 
         <Button type={'submit'} className="mt-3">Save</Button>
       </Form>

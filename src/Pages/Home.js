@@ -5,7 +5,7 @@ import ProductsByCategory from '../Components/ProductsByCategory'
 export default function Home() {
   return (
     <div>
-      <Productos/>
+      
       <ProductsByCategory/>
     </div>
   )
